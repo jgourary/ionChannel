@@ -11,11 +11,10 @@ import (
 )
 
 func main() {
-	//traj2frames("input\\kcsa.arc", "output\\frames")
-	//createStructuresDir("output\\frames")
-	createStructures("", "frame_10.txyz")
+	traj2frames("input\\kcsa.arc", "output\\frames")
+	// createStructuresDir("output\\frames")
+	// createStructures("", "frame_10.txyz")
 }
-
 
 func traj2frames(filePath string, outPath string) {
 	// open file
@@ -48,17 +47,14 @@ func traj2frames(filePath string, outPath string) {
 }
 
 func atoms2txyz(atoms []string, specs string, outPath string, frameCount int) {
-	outFile, err := os.Create(filepath.Join(outPath, "frame_" + strconv.Itoa(frameCount) + ".txyz"))
+	outFile, err := os.Create(filepath.Join(outPath, "frame_"+strconv.Itoa(frameCount)+".txyz"))
 	if err != nil {
 		fmt.Println("Failed to create new fragment file: " + outPath)
 		log.Fatal(err)
 	}
-	_, _ = outFile.WriteString(strconv.Itoa(len(atoms))+"\n")
-	_, _ = outFile.WriteString(specs+"\n")
+	_, _ = outFile.WriteString(strconv.Itoa(len(atoms)) + "\n")
+	_, _ = outFile.WriteString(specs + "\n")
 	for _, atom := range atoms {
-		_, _ = outFile.WriteString(atom+"\n")
+		_, _ = outFile.WriteString(atom + "\n")
 	}
 }
-
-
-
